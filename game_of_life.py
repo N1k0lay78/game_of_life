@@ -24,12 +24,12 @@ class GameOfLife:
         # будет возвращать количество живых клеток вокруг
         for y1 in range(-1, 2):
             for x1 in range(-1, 2):
-                if x1 != 0 and y1 != 0:
-                    x += x1 
-                    y += y1
-                    x = x % len(self.world[0])
-                    y = y % len(self.world)
-                    if self.get_cell(x, y) == 'jizn':
+                if not(x1 == 0 and y1 == 0):
+                    x2 = x + x1 
+                    y2 = y + y1
+                    x2 = x2 % len(self.world[0])
+                    y2 = y2 % len(self.world)
+                    if self.get_cell(x2, y2) == 'jizn':
                         count += 1
         return count                                
     def update_cell(self, x, y):
@@ -46,3 +46,6 @@ class GameOfLife:
         for y in range(len(self.world)):
             for x in range(len(self.world[y])):
                 self.update_cell(x, y)
+
+game = GameOfLife()
+print (game.get_count_life_around(0, 0))
