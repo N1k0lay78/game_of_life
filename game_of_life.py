@@ -32,6 +32,7 @@ class GameOfLife:
                     if self.get_cell(x2, y2) == 'jizn':
                         count += 1
         return count                                
+
     def update_cell(self, x, y):
         cell = self.get_cell(x, y)
         if cell == ' ':
@@ -42,10 +43,12 @@ class GameOfLife:
             if not (2 <= self.get_count_life_around(x, y) <= 3):
                 value = ' '
                 self.set_cell(x, y, value)
+
     def update_world(self):
         for y in range(len(self.world)):
             for x in range(len(self.world[y])):
                 self.update_cell(x, y)
+
 
 game = GameOfLife()
 print (game.get_count_life_around(0, 0))
