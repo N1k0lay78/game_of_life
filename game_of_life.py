@@ -14,22 +14,33 @@ class GameOfLife:
         ]
     
     def print(self):
-        # отрисовка в терминале 
-        pass
+        print()
+        for line in self.world:
+            print(line)
+        
 
     def create_new_world(self):
-        # создаёт мир для следущей
-        pass
+        self.new_world = [
+            [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
+            [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
+            [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
+            [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
+            [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
+            [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
+            [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
+            [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
+            [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
+            [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
+        ]
 
     def swap_world(self):
-        # замен миров
-        pass
+        self.world = self.new_world
 
     def get_cell(self, x, y):
         return self.world[y][x]
 
     def set_cell(self, x, y, value):
-        self.world[y][x] = value
+        self.new_world[y][x] = value
 
     def get_count_life_around(self, x, y):
         count = 0
@@ -56,12 +67,21 @@ class GameOfLife:
             if not (2 <= self.get_count_life_around(x, y) <= 3):
                 value = ' '
                 self.set_cell(x, y, value)
+            else:
+                value = '0'
+                self.set_cell(x, y, value)
 
     def update_world(self):
+        self.create_new_world()
         for y in range(len(self.world)):
             for x in range(len(self.world[y])):
                 self.update_cell(x, y)
 
+        self.swap_world()
+
 
 game = GameOfLife()
-print (game.get_count_life_around(0, 0))
+game.print()
+for i in range(25):
+    game.update_world()
+    game.print()
