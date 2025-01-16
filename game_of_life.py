@@ -81,7 +81,7 @@ class GameOfLife:
 
 
 game = GameOfLife()
-game.print()
-for i in range(25):
+# game.print()
+for i in range(0):
     game.update_world()
     game.print()
