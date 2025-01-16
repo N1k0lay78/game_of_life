@@ -1,18 +1,30 @@
 class GameOfLife:
     def __init__(self):
         self.world = [
-            [' ', 'jizn',' ',' ',' ', ' ', ' ',' ',' ','jizn',],
-            ['jizn', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
+            [' ', '0',' ',' ','0', ' ', ' ',' ',' ','0',],
+            ['0', ' ',' ',' ','0', ' ', ' ',' ',' ',' ',],
+            [' ', ' ',' ',' ','0', ' ', ' ',' ',' ',' ',],
+            [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
+            ['0', '0',' ',' ',' ', ' ', '0',' ',' ',' ',],
+            [' ', '0',' ',' ',' ', ' ', ' ','0',' ',' ',],
+            [' ', ' ',' ',' ',' ', '0', '0','0',' ',' ',],
             [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
             [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
-            [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
-            [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
-            [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
-            [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
-            [' ', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
-            ['jizn', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
+            ['0', ' ',' ',' ',' ', ' ', ' ',' ',' ',' ',],
         ]
     
+    def print(self):
+        # отрисовка в терминале 
+        pass
+
+    def create_new_world(self):
+        # создаёт мир для следущей
+        pass
+
+    def swap_world(self):
+        # замен миров
+        pass
+
     def get_cell(self, x, y):
         return self.world[y][x]
 
@@ -29,7 +41,7 @@ class GameOfLife:
                     y2 = y + y1
                     x2 = x2 % len(self.world[0])
                     y2 = y2 % len(self.world)
-                    if self.get_cell(x2, y2) == 'jizn':
+                    if self.get_cell(x2, y2) == '0':
                         count += 1
         return count                                
 
@@ -37,9 +49,10 @@ class GameOfLife:
         cell = self.get_cell(x, y)
         if cell == ' ':
             if self.get_count_life_around(x, y) == 3:
-                value = 'jizn'
+                value = '0'
                 self.set_cell(x, y, value)
         else:
+            # TODO fix
             if not (2 <= self.get_count_life_around(x, y) <= 3):
                 value = ' '
                 self.set_cell(x, y, value)
